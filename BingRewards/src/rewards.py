@@ -97,6 +97,7 @@ class Rewards:
         #check login was sucessful
         try:
             print(driver.current_url)
+            driver.get_screenshot_as_base64()
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.url_contains("https://account.microsoft.com/"))
             self.__sys_out("Successfully logged in", 2, True)
             VALID_MARKETS = ['mkt=EN-US', 'mkt=EN-GB']
@@ -116,6 +117,8 @@ class Rewards:
         try_count = 0
         while True:
             try:
+                print(driver.current_url)
+                driver.get_screenshot_as_base64()
                 progress_elements = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_LONG).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="userPointsBreakdown"]/div/div[2]/div/div[*]')))
                 break
             except TimeoutException:
