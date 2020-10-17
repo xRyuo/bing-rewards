@@ -79,8 +79,12 @@ class Rewards:
         self.__sys_out("Logging in", 2)
 
         driver.get(self.__LOGIN_URL)
+        print(driver.current_url)
+        print(driver.get_screenshot_as_base64())
         ActionChains(driver).send_keys(base64.b64decode(self.email).decode(), Keys.RETURN).perform()
         try:
+            print(driver.current_url)
+            print(driver.get_screenshot_as_base64())
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "i0118"))).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN)
         except:
             ActionChains(driver).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN).perform()
@@ -97,7 +101,7 @@ class Rewards:
         #check login was sucessful
         try:
             print(driver.current_url)
-            driver.get_screenshot_as_base64()
+            print(driver.get_screenshot_as_base64())
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.url_contains("https://account.microsoft.com/"))
             self.__sys_out("Successfully logged in", 2, True)
             VALID_MARKETS = ['mkt=EN-US', 'mkt=EN-GB']
@@ -118,7 +122,7 @@ class Rewards:
         while True:
             try:
                 print(driver.current_url)
-                driver.get_screenshot_as_base64()
+                print(driver.get_screenshot_as_base64())
                 progress_elements = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_LONG).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="userPointsBreakdown"]/div/div[2]/div/div[*]')))
                 break
             except TimeoutException:
