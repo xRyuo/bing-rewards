@@ -79,7 +79,6 @@ class Rewards:
         self.__sys_out("Logging in", 2)
 
         driver.get(self.__LOGIN_URL)
-        print(base64.b64decode(self.email).decode())
         ActionChains(driver).send_keys(base64.b64decode(self.email).decode(), Keys.RETURN).perform()
         try:
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "i0118"))).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN)
@@ -103,7 +102,8 @@ class Rewards:
             if not any(market in driver.current_url for market in VALID_MARKETS):
                 raise RuntimeError("Logged in, but user not located in a valid market (USA, UK).")
         except:
-            raise RuntimeError("Did NOT log in successfully")
+            pass
+            # raise RuntimeError("Did NOT log in successfully")
 
     def __get_search_progress(self, driver, device, is_edge=False):
         if len(driver.window_handles) == 1: # open new tab
