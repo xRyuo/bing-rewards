@@ -96,6 +96,7 @@ class Rewards:
 
         #check login was sucessful
         try:
+            print(driver.current_url)
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.url_contains("https://account.microsoft.com/"))
             self.__sys_out("Successfully logged in", 2, True)
             VALID_MARKETS = ['mkt=EN-US', 'mkt=EN-GB']
