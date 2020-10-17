@@ -184,7 +184,7 @@ class Rewards:
         if len(self.__queries) == 0:
             last_request_time = self.__update_search_queries(trending_date, last_request_time)
         while True:
-            print(current_url)
+            print(driver.current_url)
             progress = self.__get_search_progress(driver, device, is_edge)
             if progress == False:
                 return False
