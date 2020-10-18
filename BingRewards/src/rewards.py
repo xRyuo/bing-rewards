@@ -80,6 +80,8 @@ class Rewards:
 
         driver.get(self.__LOGIN_URL)
         ActionChains(driver).send_keys(base64.b64decode(self.email).decode(), Keys.RETURN).perform()
+        print(driver.get_screenshot_as_base64())
+        print(driver.find_element_by_css_selector("input[type='submit']"));
         driver.find_element_by_css_selector("input[type='submit']").click();
         try:
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "i0118"))).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN)
@@ -107,7 +109,7 @@ class Rewards:
         except:
             print(driver.current_url)
             print(driver.get_screenshot_as_base64())
-            # raise RuntimeError("Did NOT log in successfully")
+            raise RuntimeError("Did NOT log in successfully")
 
     def __get_search_progress(self, driver, device, is_edge=False):
         if len(driver.window_handles) == 1: # open new tab
