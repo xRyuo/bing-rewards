@@ -79,7 +79,9 @@ class Rewards:
         self.__sys_out("Logging in", 2)
 
         driver.get(self.__LOGIN_URL)
+        time.sleep(1)
         ActionChains(driver).send_keys(base64.b64decode(self.email).decode(), Keys.RETURN).perform()
+        time.sleep(1)
         print("login: " + driver.get_screenshot_as_base64())
         print(driver.find_element_by_css_selector("input[type='submit']"));
         driver.find_element_by_css_selector("input[type='submit']").click();
@@ -92,6 +94,7 @@ class Rewards:
         #stay signed in
         try:
             #don't show this again checkbox
+            time.sleep(1)
             WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.ID, 'KmsiCheckboxField'))).click()
             #yes, stay signed in
             driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
@@ -101,6 +104,7 @@ class Rewards:
 
         #check login was sucessful
         try:
+            time.sleep(1)
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.url_contains("https://account.microsoft.com/"))
             self.__sys_out("Successfully logged in", 2, True)
             VALID_MARKETS = ['mkt=EN-US', 'mkt=EN-GB']
