@@ -87,7 +87,7 @@ class Rewards:
         driver.find_element_by_css_selector("input[type='submit']").click();
         try:
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "i0118"))).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN)
-            #driver.find_element_by_css_selector("input[type='submit']").click();
+            driver.find_element_by_css_selector("input[type='submit']").click();
         except:
             ActionChains(driver).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN).perform()
 
@@ -97,7 +97,7 @@ class Rewards:
             time.sleep(1)
             WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.ID, 'KmsiCheckboxField'))).click()
             #yes, stay signed in
-            #driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
+            driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
         except TimeoutException:
             pass
             
