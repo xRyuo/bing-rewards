@@ -25,7 +25,7 @@ class Rewards:
     __TRENDS_URL                = "https://trends.google.com/trends/api/dailytrends?hl=en-US&ed={}&geo=US&ns=15"
 
     __WEB_DRIVER_WAIT_LONG      = 30
-    __WEB_DRIVER_WAIT_SHORT     = 5
+    __WEB_DRIVER_WAIT_SHORT     = 10
 
     __SYS_OUT_TAB_LEN           = 8
     __SYS_OUT_PROGRESS_BAR_LEN  = 30
