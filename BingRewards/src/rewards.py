@@ -86,6 +86,7 @@ class Rewards:
         #print(driver.find_element_by_css_selector("input[type='submit']"));
         driver.find_element_by_css_selector("input[type='submit']").click();
         try:
+            time.sleep(1)
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "i0118"))).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN)
             driver.find_element_by_css_selector("input[type='submit']").click();
         except:
@@ -126,6 +127,7 @@ class Rewards:
         try_count = 0
         while True:
             try:
+                time.sleep(1)
                 progress_elements = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_LONG).until(EC.visibility_of_all_elements_located((By.XPATH, '//*[@id="userPointsBreakdown"]/div/div[2]/div/div[*]')))
                 break
             except TimeoutException:
@@ -147,6 +149,7 @@ class Rewards:
 
         progress_text = None
         for element in progress_elements:
+            time.sleep(1)
             progress_name = element.find_element_by_xpath('./div/div[2]/mee-rewards-user-points-details/div/div/div/div/p[1]').text.upper()
             if search_type in progress_name:
                 progress_text = element.find_element_by_xpath('./div/div[2]/mee-rewards-user-points-details/div/div/div/div/p[2]').text
@@ -214,7 +217,8 @@ class Rewards:
             else:
                 prev_progress = current_progress
                 try_count = 0
-
+            
+            time.sleep(1)
             search_box = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "sb_form_q")))
             search_box.clear()
 
@@ -244,6 +248,7 @@ class Rewards:
 
     def __get_quiz_progress(self, driver, try_count=0):
         try:
+            time.sleep(1)
             #questions = driver.find_elements_by_xpath('//*[@id="rqHeaderCredits"]/div[2]/*')
             questions = driver.find_elements_by_xpath('//*[starts-with(@id, "rqQuestionState")]')
             if len(questions) > 0:
@@ -255,6 +260,7 @@ class Rewards:
                         break
                 return current_progress-1, complete_progress
             else:
+                time.sleep(1)
                 footer = driver.find_element_by_xpath('//*[@id="FooterText0"]').text
                 current_progress = footer[0]
                 complete_progress = footer[-1]
@@ -270,6 +276,7 @@ class Rewards:
         try_count = 0
         while True:
             try:
+                time.sleep(1)
                 start_quiz = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, 'rqStartQuiz')))
             #if quiz doesn't have a rStartQuiz element, it doesn't need to be prepped
             except TimeoutException:
@@ -449,6 +456,7 @@ class Rewards:
 
                         if current_progress == complete_progress-1: # last question
                             try:
+                                time.sleep(1)
                                 #header = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="quizCompleteContainer"]/span/div[1]')))
                                 header = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="quizCompleteContainer"]/div')))
                                 #if header.text == "Way to go!":
@@ -539,6 +547,7 @@ class Rewards:
 
         while current_progress != complete_progress:
             try:
+                time.sleep(1)
                 progress = WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="QuestionPane{}"]/div[2]'.format(current_progress)))).text
             except TimeoutException:
                 self.__sys_out("Could not find quiz2 progress elements", 3)
