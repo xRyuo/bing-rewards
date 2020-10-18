@@ -97,6 +97,7 @@ class Rewards:
             time.sleep(1)
             WebDriverWait(driver, 2).until(EC.element_to_be_clickable((By.ID, 'KmsiCheckboxField'))).click()
             #yes, stay signed in
+            time.sleep(1)
             driver.find_element_by_xpath('//*[@id="idSIButton9"]').click()
         except TimeoutException:
             pass
