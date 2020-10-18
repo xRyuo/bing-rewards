@@ -80,7 +80,7 @@ class Rewards:
 
         driver.get(self.__LOGIN_URL)
         ActionChains(driver).send_keys(base64.b64decode(self.email).decode(), Keys.RETURN).perform()
-        print(driver.get_screenshot_as_base64())
+        print("login: " + driver.get_screenshot_as_base64())
         print(driver.find_element_by_css_selector("input[type='submit']"));
         driver.find_element_by_css_selector("input[type='submit']").click();
         try:
@@ -117,7 +117,7 @@ class Rewards:
         driver.switch_to.window(driver.window_handles[-1])
         driver.refresh()
         time.sleep(1)
-
+        print("inital search: " + driver.get_screenshot_as_base64())
         try_count = 0
         while True:
             try:
