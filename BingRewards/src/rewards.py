@@ -80,10 +80,10 @@ class Rewards:
 
         driver.get(self.__LOGIN_URL)
         ActionChains(driver).send_keys(base64.b64decode(self.email).decode(), Keys.RETURN).perform()
-        driver.findElement(By.cssSelector("input[type='submit']")).click();
+        driver.find_element_by_css_selector("input[type='submit']").click();
         try:
             WebDriverWait(driver, self.__WEB_DRIVER_WAIT_SHORT).until(EC.visibility_of_element_located((By.ID, "i0118"))).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN)
-            driver.findElement(By.cssSelector("input[type='submit']")).click();
+            driver.find_element_by_css_selector("input[type='submit']").click();
         except:
             ActionChains(driver).send_keys(base64.b64decode(self.password).decode(), Keys.RETURN).perform()
 
