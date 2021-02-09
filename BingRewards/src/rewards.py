@@ -381,6 +381,14 @@ class Rewards:
                     self.__sys_out("Failed to complete This or That quiz", 3, True, True)
                     return False
 
+    def __solve_hot_take(self, driver):
+        try:
+            driver.find_element_by_id('btoption{}'.format(random.choice(([0,1])))).click()
+            return True
+        except:
+            self.__sys_out("Failed to complete Hot Takes", 3, True, True)
+            return False
+
     def __quiz(self, driver):
         started = self.__start_quiz(driver)
         if not started:
@@ -389,6 +397,7 @@ class Rewards:
         quiz_options_len = 4
         is_drag_and_drop = False
         is_tot = False
+        is_hot_take = False
         is_multiple_answers = False
 
         if len(driver.find_elements_by_id('rqAnswerOptionNum0')) > 0:
@@ -399,6 +408,8 @@ class Rewards:
             self.__sys_out("Multiple Answers", 3)
         elif len(driver.find_elements_by_class_name('btOptionAnsOvl')) > 0:
             is_tot = True
+        elif len(driver.find_elements_by_id('btPollOverlay')) > 0:
+            is_hot_take = True
         else:
             self.__sys_out("Multiple choice", 3)
 
@@ -482,6 +493,9 @@ class Rewards:
         #this or that quiz
         elif is_tot:
             return self.__solve_tot(driver)
+
+        elif is_hot_take:
+            return self.__solve_hot_take(driver)
 
         ## multiple choice (i.e. lignting speed)
         else:
@@ -728,7 +742,11 @@ class Rewards:
                     offer = driver.find_element_by_xpath('//*[@id="daily-sets"]/mee-card-group[1]/div/mee-card[{}]/div/card-content/mee-rewards-daily-set-item-content/div'.format(i+1))
                     c = self.__click_offer(driver, offer, './div[2]/h3', './mee-rewards-points/div/div/span[1]', './div[2]/p', './div[3]/a/span/ng-transclude')
                     try_count += 1
-                completed.append(c)
+                #first quiz never started (MS bug) but pts still awarded
+                if i == 0:
+                    completed.append(True)
+                else:
+                    completed.append(c)
         except NoSuchElementException:
             completed.append(-1)
 

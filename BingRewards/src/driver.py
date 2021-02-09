@@ -25,8 +25,8 @@ class Driver:
 
     # Microsoft Edge user agents for additional points
     #agent src: https://www.whatismybrowser.com/guides/the-latest-user-agent/edge
-    __WEB_USER_AGENT            = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36 Edg/85.0.564.41"
-    __MOBILE_USER_AGENT         = "Mozilla/5.0 (Linux; Android 10; HD1913) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.81 Mobile Safari/537.36 EdgA/45.7.2.5057"
+    __WEB_USER_AGENT            = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; Xbox; Xbox One) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36 Edg/87.0.664.47"
+    __MOBILE_USER_AGENT         = "Mozilla/5.0 (Linux; Android 10; HD1913) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Mobile Safari/537.36 EdgA/45.10.4.5088"
 
 
     def __download_driver(driver_path, system, driver_dl_index=0):
